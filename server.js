@@ -20,6 +20,7 @@ async function img(face){
 	try{
 	const [result] = await client.faceDetection(face);
 	const faces = result.faceAnnotations;
+	console.log(result);
 	console.log('Faces:');
 	faces.forEach((face, i) => {
  		console.log(`  Face #${i + 1}:`);

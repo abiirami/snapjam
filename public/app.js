@@ -1,3 +1,5 @@
+
+
 // Set constraints for the video stream
 var constraints = { video: { facingMode: "user" }, audio: false };
 // Define constants
@@ -24,6 +26,28 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     cameraOutput.classList.add("taken");
+    imgAPI(cameraOutput.src);
+    //console.log(cameraOutput.src);
 };
+
+
+
+async function imgAPI(camera){
+    try{
+        const data = await fetch("/testapi", {
+            method: "POST",
+            body: JSON.stringify({image: camera}),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type' : 'application/json'
+            }
+        })
+        //console.log(await data.json())
+    } catch(error){
+        console.log(error.message)
+    }
+}
+
+
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
