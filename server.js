@@ -8,11 +8,12 @@ const fs = require('fs')
 //const router = express.Router();
 
 app.use(express.static('public'))
-app.use(BodyParser.json())
+app.use(BodyParser.json({limit: '10mb', extended:true}))
 
 // google 
 const vision = require('@google-cloud/vision');
 const client = new vision.ImageAnnotatorClient();
+
 
 app.get("/", (req, res)=>res.render("index.html"))
 
@@ -20,7 +21,6 @@ async function img(face){
 	try{
 	const [result] = await client.faceDetection(face);
 	const faces = result.faceAnnotations;
-	console.log(result);
 	console.log('Faces:');
 	faces.forEach((face, i) => {
  		console.log(`  Face #${i + 1}:`);
