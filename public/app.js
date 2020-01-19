@@ -42,7 +42,10 @@ async function imgAPI(camera){
                 'Content-Type' : 'application/json'
             }
         })
-        //console.log(await data.json())
+        let json = await data.json()
+        console.log(json)
+        window.location = json.spotify
+        
     } catch(error){
         console.log(error.message)
     }
