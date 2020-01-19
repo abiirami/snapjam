@@ -28,6 +28,38 @@ async function img(face){
 		console.log(`    Anger: ${face.angerLikelihood}`);
   		console.log(`    Sorrow: ${face.sorrowLikelihood}`);
 		console.log(`    Surprise: ${face.surpriseLikelihood}`);
+
+
+
+
+
+		
+		if(face.joyLikelihood == "VERY_LIKELY"){
+			console.log("face worky")
+		} else if(face.angerLikelihood == "VERY_LIKELY"){
+
+		}else if(face.sorrowLikelihood == "VERY_LIKELY"){
+
+		}else if(face.surpriseLikelihood == "VERY_LIKELY"){
+
+		} else if(face.joyLikelihood == "LIKELY"){
+			console.log("face worky")
+		} else if(face.angerLikelihood == "LIKELY"){
+
+		}else if(face.sorrowLikelihood == "LIKELY"){
+
+		}else if(face.surpriseLikelihood == "LIKELY"){
+
+		} else {
+ 			console.log(" NOT face worky")
+		}
+
+
+
+
+
+
+
 	});	
 		} catch(error){
 		console.log(error.message)
