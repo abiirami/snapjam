@@ -29,7 +29,7 @@ async function img(face){
 	const faces = result.faceAnnotations;
 	console.log('Faces:');
 	faces.forEach((face, i) => {
- 		console.log(`  Face #${i + 1}:`);
+ 		console.log(`  Face #${i+1}:`);
  		console.log(`    Joy: ${face.joyLikelihood}`);
 		console.log(`    Anger: ${face.angerLikelihood}`);
   		console.log(`    Sorrow: ${face.sorrowLikelihood}`);
@@ -112,14 +112,15 @@ async function img(face){
 }
 
 app.post('/testapi', async function (req,res){
-	//console.log(req.body)
+	try {
+		//console.log(req.body)
 
 	fs.writeFile('./face.png', req.body.image.split(';base64,').pop(), {encoding: 'base64'}, function(err){
 		console.log('File created')
 	});
 	
 	// fetch data after checking cases here
-	img('./face.png');
+	await img('./face.png');
 	console.log(str)
 	// store it and determine 
 	// what to return from the /testapi endpoint 
@@ -133,6 +134,10 @@ app.post('/testapi', async function (req,res){
 	// client code to redirct
 	// window.location.href = data.spotify;
 	//return res.redirect("login");
+	}
+	catch(err){
+		console.log(err.message);
+	}
 });
 
 
